@@ -34,11 +34,23 @@ async function run() {
 
     app.get("/myToys", async (req, res) => {
       console.log(req.query.email);
+      const sortMethod = req.query.sort;
+      console.log(sortMethod);
       let query = {};
       if (req.query?.email) {
         query = { email: req.query.email };
       }
-      const result = await carToysCollection.find(query).toArray();
+
+      let result;
+      if (sortMethod === "default") {
+        result = await carToysCollection.find(query).toArray();
+      } else {
+        const sortNum = sortMethod === "highest" ? -1 : 1;
+        result = await carToysCollection
+          .find(query)
+          .sort({ price: sortNum })
+          .toArray();
+      }
       res.send(result);
     });
 
