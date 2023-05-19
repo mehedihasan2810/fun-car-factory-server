@@ -45,9 +45,6 @@ async function run() {
     app.get("/toy-details/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
-      // const options = {
-      //   projection: { title: 1, price: 1, service_id: 1, img: 1 },
-      // };
 
       const result = await carToysCollection.findOne(query);
       res.send(result);
@@ -57,6 +54,14 @@ async function run() {
       const toy = req.body;
       console.log(toy);
       const result = await carToysCollection.insertOne(toy);
+      res.send(result);
+    });
+
+    app.delete("/myToys/:id", async (req, res) => {
+      const id = req.params.id;
+      console.log(id);
+      const query = { _id: new ObjectId(id) };
+      const result = await carToysCollection.deleteOne(query);
       res.send(result);
     });
 
