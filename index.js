@@ -28,7 +28,7 @@ async function run() {
     const carToysCollection = client.db("carToys").collection("cars");
 
     app.get("/allToys", async (req, res) => {
-      const result = await carToysCollection.find().toArray();
+      const result = await carToysCollection.find().limit(20).toArray();
       res.send(result);
     });
 
@@ -47,6 +47,17 @@ async function run() {
       const query = { _id: new ObjectId(id) };
 
       const result = await carToysCollection.findOne(query);
+      res.send(result);
+    });
+
+    app.get("/search", async (req, res) => {
+      const searchTerm = req.query.term;
+      console.log(searchTerm);
+
+      const result = await carToysCollection
+        .find({ name: { $regex: new RegExp(searchTerm, "i") } })
+        .toArray();
+
       res.send(result);
     });
 
