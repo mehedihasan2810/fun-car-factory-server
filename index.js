@@ -5,6 +5,12 @@ require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// const corsConfig = {
+//   origin: "*",
+//   credentials: true,
+//   methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS", "PUT"],
+// };
+
 // middleware
 app.use(cors());
 app.use(express.json());
@@ -23,19 +29,17 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+     client.connect();
 
     const carToysCollection = client.db("carToys").collection("cars");
 
-    app.get("/allToys", async (req, res) => {
+    app.get("/all-toys", async (req, res) => {
       const result = await carToysCollection.find().limit(20).toArray();
       res.send(result);
     });
 
-    app.get("/myToys", async (req, res) => {
-      console.log(req.query.email);
+    app.get("/my-toys", async (req, res) => {
       const sortMethod = req.query.sort;
-      console.log(sortMethod);
       let query = {};
       if (req.query?.email) {
         query = { email: req.query.email };
@@ -64,7 +68,6 @@ async function run() {
 
     app.get("/search", async (req, res) => {
       const searchTerm = req.query.term;
-      console.log(searchTerm);
 
       const result = await carToysCollection
         .find({ name: { $regex: new RegExp(searchTerm, "i") } })
@@ -73,9 +76,8 @@ async function run() {
       res.send(result);
     });
 
-    app.post("/addToy", async (req, res) => {
+    app.post("/add-toy", async (req, res) => {
       const toy = req.body;
-      console.log(toy);
       const result = await carToysCollection.insertOne(toy);
       res.send(result);
     });
@@ -94,12 +96,15 @@ async function run() {
       res.send(result);
     });
 
-    app.delete("/myToys/:id", async (req, res) => {
+    app.delete("/my-toys/:id", async (req, res) => {
       const id = req.params.id;
-      console.log(id);
       const query = { _id: new ObjectId(id) };
       const result = await carToysCollection.deleteOne(query);
       res.send(result);
+    });
+
+    app.get("/check", (req, res) => {
+      res.send("funCarFactory is checking!");
     });
 
     // Send a ping to confirm a successful connection
@@ -114,6 +119,12 @@ async function run() {
 }
 run().catch(console.dir);
 
+app.get("/", (req, res) => {
+  res.send("funCarFactory is running");
+});
+
 app.listen(PORT, () => {
   console.log(`server is running at http://localhost:${PORT}`);
 });
+
+module.exports = app;
