@@ -9,9 +9,9 @@ export interface CarInput {
   description: string;
   email: string;
   name: string;
-  price: string;
-  quantity: string;
-  rating: string;
+  price: number;
+  quantity: number;
+  rating: number;
   sellerName: string;
   url: string;
 }

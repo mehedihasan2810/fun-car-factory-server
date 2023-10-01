@@ -12,9 +12,9 @@ type Car {
   description: String!
   email: String!
   name: String!
-  price: String!
-  quantity: String!
-  rating: String!
+  price: Int!
+  quantity: Int!
+  rating: Int!
   sellerName: String!
   url: String!
 }
@@ -31,9 +31,9 @@ input CarInput {
   description: String!
   email: String!
   name: String!
-  price: String!
-  quantity: String!
-  rating: String!
+  price: Int!
+  quantity: Int!
+  rating: Int!
   sellerName: String!
   url: String!
 }
