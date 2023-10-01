@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { CarInput } from "interfaces";
 
 const prisma = new PrismaClient();
 
@@ -12,4 +13,21 @@ export const getCar = async (id: string) => {
       id,
     },
   });
+};
+
+export const createCar = async (carInput: CarInput) => {
+  const car = await prisma.car.create({
+    data: {
+      ...carInput,
+    },
+  });
+
+  return {
+    code: 200,
+    message: "successfully created",
+    success: true,
+    car: {
+      ...car,
+    },
+  };
 };

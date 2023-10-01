@@ -16,6 +16,7 @@ export const resolvers = {
     ...userResolver.Query,
   },
   Mutation: {
+    ...carResolver.Mutation,
     ...userResolver.Mutation,
   },
 };

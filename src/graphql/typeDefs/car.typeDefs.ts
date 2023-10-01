@@ -1,38 +1,41 @@
 export const carTypeDefs = `#graphql
 
 interface MutationResponse{
-  code: String!
+  code: Int!
   success: Boolean!
   message: String!
 }
 
 type Car {
   id: ID!
-  name: String!
-  email: String!
   category: String!
-  price: String!
-  rating: String!
-  quantity: String!
   description: String!
+  email: String!
+  name: String!
+  price: String!
+  quantity: String!
+  rating: String!
+  sellerName: String!
+  url: String!
 }
 
 type CreateCarResponse implements MutationResponse {
-  code: String!
+  code: Int!
   success: Boolean!
   message: String!
   car: Car!
 }
 
 input CarInput {
-  id: ID!
-  name: String!
-  email: String!
   category: String!
-  price: String!
-  rating: String!
-  quantity: String!
   description: String!
+  email: String!
+  name: String!
+  price: String!
+  quantity: String!
+  rating: String!
+  sellerName: String!
+  url: String!
 }
 
 type Query {
