@@ -12,5 +12,6 @@ type Car {
 
 type Query {
     getCars: [Car]
+    getCar(id: String): Car
 }
 `;
