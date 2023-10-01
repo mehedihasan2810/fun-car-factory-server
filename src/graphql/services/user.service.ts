@@ -14,6 +14,10 @@ export const getUser = async (email: string) => {
   return user;
 };
 
+export const getUsers = async () => {
+  return await prisma.user.findMany();
+}
+
 export const createUser = async ({ name, email, role }: UserInput) => {
   //   const extractedSelections = extractSelection(info);
   const user = await prisma.user.create({
