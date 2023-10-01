@@ -5,11 +5,8 @@ import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import { resolvers, typeDefs } from "./graphql";
 dotenv.config();
-// import { PrismaClient } from "@prisma/client";
 const app = express();
 const port = process.env.PORT || 4000;
-
-// const prisma = new PrismaClient();
 
 const bootstrapServer = async () => {
   const server = new ApolloServer({
@@ -25,9 +22,7 @@ const bootstrapServer = async () => {
   app.use("/graphql", expressMiddleware(server));
 
   app.get("/", async (req, res) => {
-    // const cars = await prisma.cars.findMany();
-    // console.log(cars);
-    res.send('hello world');
+    res.send("Fun Car Factory");
   });
 
   app.listen(port, () => {

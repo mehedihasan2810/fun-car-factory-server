@@ -7,9 +7,10 @@ type User {
 }
 
 type Query {
-    getUser: User
+    getUser(email: String): User
     getUsers: [User]
 }
+
 type Mutation {
     createUser(input: UserInput): User
 }

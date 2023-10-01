@@ -1,18 +1,17 @@
-import { createUser } from "../services/user.service";
+import { UserInput } from "interfaces";
+import { createUser, getUser } from "../services/user.service";
 
 export const userResolver = {
   Query: {
-    getUser() {},
+    async getUser(_: any, args: Record<string, unknown>) {
+      return await getUser(args.email as string);
+    },
 
     getUsers() {},
   },
   Mutation: {
-    async createUser(_: any, { input }: Record<string, any>) {
-      return await createUser({
-        name: input.name,
-        email: input.email,
-        role: input.role,
-      });
+    async createUser(_: any, { input }: Record<string, unknown>) {
+      return await createUser(input as UserInput);
     },
   },
 };

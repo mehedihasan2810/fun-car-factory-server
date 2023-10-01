@@ -7,3 +7,5 @@ export const getCars = async () => {
   //   const extractedSelections = extractSelection(info);
   return await prisma.car.findMany();
 };
+
+

@@ -1,13 +1,18 @@
 // import { extractSelection } from "../utils/extractSelection";
 import { PrismaClient } from "@prisma/client";
+import { UserInput } from "interfaces";
 
 const prisma = new PrismaClient();
 
-interface UserInput {
-  name: string;
-  email: string;
-  role: string;
-}
+export const getUser = async (email: string) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  });
+
+  return user;
+};
 
 export const createUser = async ({ name, email, role }: UserInput) => {
   //   const extractedSelections = extractSelection(info);
