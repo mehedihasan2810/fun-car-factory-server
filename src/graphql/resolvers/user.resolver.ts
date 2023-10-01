@@ -1,4 +1,4 @@
-export const carResolver = {
+export const userResolver = {
     getUser() {
 
     },

@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,26 +7,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  name  String
-  email String @unique
-  role  String @default("user")
-  Cars  Cars[]
+model User {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  name  String?
+  email String  @unique
+  role  Role    @default(USER)
+
+  @@map("users")
 }
 
-model Cars {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  img_url     String
-  added_by    String
-  email       String
+model Car {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
   category    String
-  price       Int
-  rating      Int
-  quantity    Int
   description String
-  created_at  DateTime @default(now())
-  creator     Users    @relation(fields: [creatorId], references: [id])
-  creatorId   String   @db.ObjectId
+  email       String
+  name        String
+  price       String
+  quantity    String
+  rating      String
+  sellerName  String
+  url         String
+
+  @@map("cars")
+}
+
+enum Role {
+  USER
+  ADMIN
 }
