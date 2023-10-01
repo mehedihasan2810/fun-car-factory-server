@@ -11,7 +11,7 @@ model User {
   id    String  @id @default(auto()) @map("_id") @db.ObjectId
   name  String?
   email String  @unique
-  role  Role    @default(USER)
+  role  String  @default("user")
 
   @@map("users")
 }
@@ -29,9 +29,4 @@ model Car {
   url         String
 
   @@map("cars")
-}
-
-enum Role {
-  USER
-  ADMIN
 }
