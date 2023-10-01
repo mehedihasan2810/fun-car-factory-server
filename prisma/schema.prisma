@@ -25,6 +25,7 @@ model Car {
   price       Int
   quantity    Int
   rating      Int
+  sellerName  String
   url         String
 
   @@map("cars")

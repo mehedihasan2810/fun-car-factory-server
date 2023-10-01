@@ -4,30 +4,42 @@ import { CarInput } from "interfaces";
 const prisma = new PrismaClient();
 
 export const getCars = async () => {
-  return await prisma.car.findMany();
+  try {
+    return await prisma.car.findMany();
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getCar = async (id: string) => {
-  return await prisma.car.findUnique({
-    where: {
-      id,
-    },
-  });
+  try {
+    return await prisma.car.findUnique({
+      where: {
+        id,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const createCar = async (carInput: CarInput) => {
-  const car = await prisma.car.create({
-    data: {
-      ...carInput,
-    },
-  });
+  try {
+    const car = await prisma.car.create({
+      data: {
+        ...carInput,
+      },
+    });
 
-  return {
-    code: 200,
-    message: "successfully created",
-    success: true,
-    car: {
-      ...car,
-    },
-  };
+    return {
+      code: 200,
+      message: "successfully created",
+      success: true,
+      car: {
+        ...car,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+  }
 };
