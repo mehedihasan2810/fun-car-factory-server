@@ -21,7 +21,7 @@ const bootstrapServer = async () => {
   app.use(express.urlencoded({ extended: true }));
   app.use("/graphql", expressMiddleware(server));
 
-  app.get("/", async (req, res) => {
+  app.get("/", async (_req, res) => {
     res.send("Fun Car Factory");
   });
 

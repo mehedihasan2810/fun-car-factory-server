@@ -1,5 +1,5 @@
 import { CarInput } from "interfaces";
-import { prisma } from "../../../prisma";
+import { prisma } from "../../../prisma/index.prisma";
 
 export const getCars = async () => {
   try {

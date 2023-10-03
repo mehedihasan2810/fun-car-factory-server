@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Car Queries checking jest 1`] = `
+{
+  "body": {
+    "kind": "single",
+    "singleResult": {
+      "data": {
+        "getCars": [
+          {
+            "name": "Ferrari 2021",
+          },
+          {
+            "name": "Tesla Super Truck",
+          },
+          {
+            "name": "Tesla Super Truck",
+          },
+          {
+            "name": "TaTa super bus",
+          },
+          {
+            "name": "TaTa super bus",
+          },
+          {
+            "name": "Toyota truck 2011",
+          },
+          {
+            "name": "Volbo bus",
+          },
+          {
+            "name": "Volbo bus",
+          },
+          {
+            "name": "Volbo bus",
+          },
+          {
+            "name": "Volbo bus",
+          },
+          {
+            "name": "Volbo bus",
+          },
+          {
+            "name": "Volbo bus",
+          },
+          {
+            "name": "Volbo bus",
+          },
+          {
+            "name": "Volbo bus",
+          },
+          {
+            "name": "American ferrari",
+          },
+          {
+            "name": "American ferrari",
+          },
+          {
+            "name": "American ferrari",
+          },
+          {
+            "name": "American ferrari",
+          },
+          {
+            "name": "American ferrari",
+          },
+          {
+            "name": "American ferrari",
+          },
+          {
+            "name": "super ferrari",
+          },
+          {
+            "name": "super ferrari",
+          },
+          {
+            "name": "super ferrari",
+          },
+          {
+            "name": "super ferrari",
+          },
+          {
+            "name": "super ferrari",
+          },
+          {
+            "name": "kolkatar taxi",
+          },
+          {
+            "name": "deshi taxi",
+          },
+          {
+            "name": "TaTa Taxi",
+          },
+          {
+            "name": "TaTa Taxi",
+          },
+          {
+            "name": "TaTa Taxi",
+          },
+        ],
+      },
+      "errors": undefined,
+    },
+  },
+  "http": {
+    "headers": Map {
+      "cache-control" => "no-store",
+    },
+    "status": undefined,
+  },
+}
+`;

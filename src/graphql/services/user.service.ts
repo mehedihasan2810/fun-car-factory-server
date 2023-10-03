@@ -1,6 +1,6 @@
 // import { extractSelection } from "../utils/extractSelection";
-import { UserInput } from "interfaces";
-import { prisma } from "../../../prisma";
+import { UserInput } from 'interfaces'; 
+import { prisma } from '../../../prisma/index.prisma'
 
 export const getUser = async (email: string) => {
   try {
