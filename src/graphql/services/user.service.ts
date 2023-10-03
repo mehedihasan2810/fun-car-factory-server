@@ -1,8 +1,6 @@
 // import { extractSelection } from "../utils/extractSelection";
-import { PrismaClient } from "@prisma/client";
 import { UserInput } from "interfaces";
-
-const prisma = new PrismaClient();
+import { prisma } from "../../../prisma";
 
 export const getUser = async (email: string) => {
   try {
