@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Car Queries fetches list of cars with field name, email, price, rating, url 1`] = `
+exports[`Car Queries Should fetch a list of cars with field name, email, price, rating, url 1`] = `
 {
   "body": {
     "kind": "single",
@@ -231,7 +231,7 @@ exports[`Car Queries fetches list of cars with field name, email, price, rating,
 }
 `;
 
-exports[`Car Queries fetches single car with unique id arg 1`] = `
+exports[`Car Queries Should fetch a single car based on a unique id 1`] = `
 {
   "body": {
     "kind": "single",

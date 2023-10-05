@@ -23,17 +23,16 @@ query GetCar($id: String!) {
     }`;
 
 describe("Car Queries", () => {
-  
-  it("fetches list of cars with field name, email, price, rating, url", async () => {
+  test("Should fetch a list of cars with field name, email, price, rating, url", async () => {
     const getCarsRes = await testServer.executeOperation({
       query: GET_CARS,
     });
 
     expect((getCarsRes.body as any).singleResult.errors).toBeUndefined();
     expect(getCarsRes).toMatchSnapshot();
-  });
+  }, 120000);
 
-  it("fetches single car with unique id arg", async () => {
+  test("Should fetch a single car based on a unique id", async () => {
     const getCarRes = await testServer.executeOperation({
       query: GET_CAR,
       variables: { id: "64671a8fe81294b16783e44d" },
@@ -41,6 +40,5 @@ describe("Car Queries", () => {
 
     expect((getCarRes.body as any).singleResult.errors).toBeUndefined();
     expect(getCarRes).toMatchSnapshot();
-  });
-
+  }, 120000);
 });

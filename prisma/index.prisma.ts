@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
-export const prisma= new PrismaClient();
+export const prisma = new PrismaClient();
 
 // log the time that our queries are taking start
 // prisma.$use(async (params, next) => {
