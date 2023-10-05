@@ -29,7 +29,7 @@ mutation CreateUser($input: UserInput!) {
     }`;
 
 const mockUser = {
-  email: "foo@gmail.com",
+  email: "usertestjest@gmail.com",
   name: "mehedi",
   role: "user",
 };
