@@ -1,4 +1,4 @@
-import { Car, CarInput } from "types";
+import { Car, CarInput, CreateCarResponse } from "types";
 import { prisma } from "../../../prisma/index.prisma";
 
 export const getCars = async (): Promise<Car[] | undefined> => {
@@ -21,7 +21,9 @@ export const getCar = async (id: string): Promise<Car | null | undefined> => {
   }
 };
 
-export const createCar = async (carInput: CarInput) => {
+export const createCar = async (
+  carInput: CarInput
+): Promise<CreateCarResponse | undefined> => {
   try {
     const car = await prisma.car.create({
       data: {
@@ -42,7 +44,22 @@ export const createCar = async (carInput: CarInput) => {
   }
 };
 
-export const deleteCar = async (id: string) => {
+export const updateCar = async (updateInput: Car): Promise<Car | undefined> => {
+  try {
+    const { id, ...updateData } = updateInput;
+
+    return await prisma.car.update({
+      where: {
+        id,
+      },
+      data: updateData,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteCar = async (id: string): Promise<Car | undefined> => {
   try {
     return await prisma.car.delete({
       where: {

@@ -1,4 +1,10 @@
-import { createCar, deleteCar, getCar, getCars } from "../services/car.service";
+import {
+  createCar,
+  deleteCar,
+  getCar,
+  getCars,
+  updateCar,
+} from "../services/car.service";
 import { Car, CarInput, CreateCarResponse } from "types";
 export const carResolver = {
   Query: {
@@ -19,6 +25,10 @@ export const carResolver = {
       { carInput }: { carInput: CarInput }
     ): Promise<CreateCarResponse | undefined> {
       return await createCar(carInput);
+    },
+
+    async updateCar(_: unknown, { updateInput }: { updateInput: Car }) {
+      return await updateCar(updateInput);
     },
 
     async deleteCar(

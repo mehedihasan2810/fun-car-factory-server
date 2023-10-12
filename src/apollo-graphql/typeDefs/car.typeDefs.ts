@@ -38,6 +38,19 @@ input CarInput {
   url: String!
 }
 
+input UpdateCarInput {
+  id: ID!
+  category: String!
+  description: String!
+  email: String!
+  name: String!
+  price: Int!
+  quantity: Int!
+  rating: Int!
+  sellerName: String!
+  url: String!
+}
+
 type Query {
     getCars: [Car!]!
     getCar(id: String!): Car!
@@ -45,6 +58,7 @@ type Query {
 
 type Mutation {
   createCar(carInput: CarInput!): CreateCarResponse!
+  updateCar(updateInput: UpdateCarInput!): Car!
   deleteCar(id: String!): Car!
 }
 `;
