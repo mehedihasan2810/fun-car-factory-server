@@ -1,8 +1,8 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import type { ListenOptions } from "net";
-import { typeDefs } from "../src/graphql";
-import { resolvers } from "../src/graphql";
+import { typeDefs } from "../src/apollo-graphql";
+import { resolvers } from "../src/apollo-graphql";
 import request from "supertest";
 
 // This function will create a new server Apollo Server instance

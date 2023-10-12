@@ -1,6 +1,5 @@
-// import { extractSelection } from "../utils/extractSelection";
-import { UserInput } from 'interfaces'; 
-import { prisma } from '../../../prisma/index.prisma'
+import { UserInput } from "types";
+import { prisma } from "../../../prisma/index.prisma";
 
 export const getUser = async (email: string) => {
   try {
@@ -25,7 +24,6 @@ export const getUsers = async () => {
 };
 
 export const createUser = async ({ name, email, role }: UserInput) => {
-  //   const extractedSelections = extractSelection(info);
   try {
     const user = await prisma.user.create({
       data: {

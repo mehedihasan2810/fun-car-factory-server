@@ -2,12 +2,13 @@
   "name": "fun-car-factory-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
     "dev": "nodemon",
-    "build": "rm -rf ./build && tsc",
-    "start": "node build/src/index.js",
-    "test": "jest"
+    "build": "rm -rf ./dist && npm run codegen && tsc",
+    "start": "node dist/src/index.js",
+    "test": "jest",
+    "postinstall": "prisma generate"
   },
   "jest": {
     "preset": "ts-jest",

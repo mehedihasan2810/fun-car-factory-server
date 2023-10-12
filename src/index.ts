@@ -3,10 +3,11 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
-import { resolvers, typeDefs } from "./graphql";
+import { typeDefs, resolvers } from "./apollo-graphql";
+
 dotenv.config();
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5000;
 
 const bootstrapServer = async () => {
   const server = new ApolloServer({

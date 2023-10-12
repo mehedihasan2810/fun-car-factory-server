@@ -1,5 +1,3 @@
-// import { userTypeDefs } from "./typeDefs/user.typeDefs";
-
 import { carResolver } from "./resolvers/car.resolver";
 import { userResolver } from "./resolvers/user.resolver";
 import { carTypeDefs } from "./typeDefs/car.typeDefs";

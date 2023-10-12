@@ -1,7 +1,7 @@
-import { CarInput } from "interfaces";
+import { Car, CarInput } from "types";
 import { prisma } from "../../../prisma/index.prisma";
 
-export const getCars = async () => {
+export const getCars = async (): Promise<Car[] | undefined> => {
   try {
     return await prisma.car.findMany();
   } catch (error) {
@@ -9,7 +9,7 @@ export const getCars = async () => {
   }
 };
 
-export const getCar = async (id: string) => {
+export const getCar = async (id: string): Promise<Car | null | undefined> => {
   try {
     return await prisma.car.findUnique({
       where: {
@@ -39,5 +39,17 @@ export const createCar = async (carInput: CarInput) => {
     };
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const deleteCar = async (id: string) => {
+  try {
+    return await prisma.car.delete({
+      where: {
+        id,
+      },
+    });
+  } catch (error) {
+    console.error(error);
   }
 };

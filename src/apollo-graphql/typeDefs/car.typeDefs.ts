@@ -40,10 +40,11 @@ input CarInput {
 
 type Query {
     getCars: [Car!]!
-    getCar(id: String!): Car
+    getCar(id: String!): Car!
 }
 
 type Mutation {
-  createCar(carInput: CarInput!): CreateCarResponse
+  createCar(carInput: CarInput!): CreateCarResponse!
+  deleteCar(id: String!): Car!
 }
 `;
