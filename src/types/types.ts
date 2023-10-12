@@ -17,12 +17,20 @@ export type Car = Prettify<{
 
 export type CarInput = Omit<Car, "id">;
 
-export type CreateCarResponse = {
+type Response = {
   code: number;
   message: string;
   success: boolean;
-  car: Car;
 };
+
+export type CreateCarResponse = Prettify<
+  Response & {
+    // code: number;
+    // message: string;
+    // success: boolean;
+    car: Car;
+  }
+>;
 
 export type User = {
   id: string;
@@ -30,5 +38,11 @@ export type User = {
   email: string;
   role: string;
 };
+
+export type CreateUserResponse = Prettify<
+  Response & {
+    user: User | null;
+  }
+>;
 
 export type UserInput = Omit<User, "id">;

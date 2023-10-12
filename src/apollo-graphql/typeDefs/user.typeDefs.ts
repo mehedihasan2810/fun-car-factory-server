@@ -7,18 +7,25 @@ type User {
     role: String!
 }
 
+type CreateUserResponse implements MutationResponse {
+  code: Int!
+  success: Boolean!
+  message: String!
+  user: User
+}
+
 type Query {
     getUser(email: String!): User!
     getUsers: [User!]!
-}
-
-type Mutation {
-    createUser(input: UserInput!): User!
 }
 
 input UserInput {
     email: String!
     name: String!
     role: String!
+}
+
+type Mutation {
+    createUser(input: UserInput!): CreateUserResponse!
 }
 `;

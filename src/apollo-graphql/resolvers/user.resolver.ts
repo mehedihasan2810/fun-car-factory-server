@@ -1,5 +1,5 @@
 import { createUser, getUser, getUsers } from "../services/user.service";
-import { User, UserInput } from "types";
+import { User, UserInput, CreateUserResponse } from "types";
 
 export const userResolver = {
   Query: {
@@ -18,7 +18,7 @@ export const userResolver = {
     async createUser(
       _: unknown,
       { input }: { input: UserInput }
-    ): Promise<User | undefined> {
+    ): Promise<CreateUserResponse | undefined> {
       return await createUser(input);
     },
   },
