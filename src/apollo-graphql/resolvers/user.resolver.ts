@@ -1,4 +1,9 @@
-import { createUser, getUser, getUsers } from "../services/user.service";
+import {
+  createUser,
+  deleteUser,
+  getUser,
+  getUsers,
+} from "../services/user.service";
 import { User, UserInput, CreateUserResponse } from "types";
 
 export const userResolver = {
@@ -20,6 +25,10 @@ export const userResolver = {
       { input }: { input: UserInput }
     ): Promise<CreateUserResponse | undefined> {
       return await createUser(input);
+    },
+
+    async deleteUser(_: unknown, { email }: { email: string }): Promise<User> {
+      return deleteUser(email);
     },
   },
 };

@@ -27,5 +27,6 @@ input UserInput {
 
 type Mutation {
     createUser(input: UserInput!): CreateUserResponse!
+    deleteUser(email: String!): User!
 }
 `;
