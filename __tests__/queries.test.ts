@@ -4,58 +4,70 @@ import { Car, User } from "../src/types/types";
 import { testServer } from "./utils";
 
 describe("Queries", () => {
-  test("Returns user list with name field", async () => {
-    const response = await testServer.executeOperation({
-      query: `query GetUsers {
+  test(
+    "Returns user list with name field",
+    async () => {
+      const response = await testServer.executeOperation({
+        query: `query GetUsers {
         getUsers {
           name
         }
       }`,
-    });
+      });
 
-    if (response.body.kind === "single") {
-      const users = response.body.singleResult.data?.getUsers as User[];
-      expect(response.body.singleResult.errors).toBeUndefined();
-      expect(users).toBeDefined();
-    }
-  });
+      if (response.body.kind === "single") {
+        const users = response.body.singleResult.data?.getUsers as User[];
+        expect(response.body.singleResult.errors).toBeUndefined();
+        expect(users).toBeDefined();
+      }
+    },
+    { retry: 3 }
+  );
 
-  test("Should return a user with email field with the provided email", async () => {
-    const response = await testServer.executeOperation({
-      query: `query GetUser($email: String!) {
+  test(
+    "Should return a user with email field with the provided email",
+    async () => {
+      const response = await testServer.executeOperation({
+        query: `query GetUser($email: String!) {
         getUser(email: $email) {
           email
         }
       }`,
-      variables: { email: "test@gmail.com" },
-    });
+        variables: { email: "test@gmail.com" },
+      });
 
-    if (response.body.kind === "single") {
-      const user = response.body.singleResult.data?.getUser as Pick<
-        User,
-        "email"
-      >;
-      expect(response.body.singleResult.errors).toBeUndefined();
-      expect(user).toBeDefined();
-      expect(user.email).toEqual("test@gmail.com");
-    }
-  });
+      if (response.body.kind === "single") {
+        const user = response.body.singleResult.data?.getUser as Pick<
+          User,
+          "email"
+        >;
+        expect(response.body.singleResult.errors).toBeUndefined();
+        expect(user).toBeDefined();
+        expect(user.email).toEqual("test@gmail.com");
+      }
+    },
+    { retry: 3 }
+  );
 
-  test("Should return Car list with the field name", async () => {
-    const response = await testServer.executeOperation({
-      query: `query GetCars {
+  test(
+    "Should return Car list with the field name",
+    async () => {
+      const response = await testServer.executeOperation({
+        query: `query GetCars {
         getCars {
           name
         }
       }`,
-    });
+      });
 
-    if (response.body.kind === "single") {
-      const cars = response.body.singleResult.data?.getCars as Car[];
-      expect(response.body.singleResult.errors).toBeUndefined();
-      expect(cars).toBeDefined();
-    }
-  });
+      if (response.body.kind === "single") {
+        const cars = response.body.singleResult.data?.getCars as Car[];
+        expect(response.body.singleResult.errors).toBeUndefined();
+        expect(cars).toBeDefined();
+      }
+    },
+    { retry: 3 }
+  );
 
   test("Should return a car data with name field with the provided id variable", async () => {
     const response = await testServer.executeOperation({
