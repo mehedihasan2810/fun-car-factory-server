@@ -54,6 +54,7 @@ input UpdateCarInput {
 type Query {
     getCars: [Car!]!
     getCar(id: String!): Car!
+    getCartCar(cartIds: [String!]!): [Car!]!
 }
 
 type Mutation {

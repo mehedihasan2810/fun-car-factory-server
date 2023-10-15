@@ -70,3 +70,20 @@ export const deleteCar = async (id: string): Promise<Car | undefined> => {
     console.error(error);
   }
 };
+
+// cart queries
+export const getCartCar = async (ids: string[]): Promise<Car[] | undefined> => {
+  try {
+    const cartCars = await prisma.car.findMany({
+      where: {
+        id: {
+          in: ids,
+        },
+      },
+    });
+
+    return cartCars;
+  } catch (error) {
+    console.error(error);
+  }
+};

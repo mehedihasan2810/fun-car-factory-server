@@ -3,6 +3,7 @@ import {
   deleteCar,
   getCar,
   getCars,
+  getCartCar,
   updateCar,
 } from "../services/car.service";
 import { Car, CarInput, CreateCarResponse } from "types";
@@ -16,6 +17,13 @@ export const carResolver = {
     },
     async getCars(): Promise<Car[] | undefined> {
       return await getCars();
+    },
+
+    async getCartCar(
+      _: unknown,
+      { cartIds }: { cartIds: string[] }
+    ): Promise<Car[] | undefined> {
+      return getCartCar(cartIds);
     },
   },
 
