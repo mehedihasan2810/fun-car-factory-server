@@ -74,7 +74,6 @@ describe("Mutations", () => {
         const deletedCar = deleteCarRes.body.singleResult.data
           ?.deleteCar as Pick<Car, "name">;
         expect(deletedCar.name).toEqual("testing createCar");
-        console.log(deletedCar);
       }
     },
     { retry: 3 }

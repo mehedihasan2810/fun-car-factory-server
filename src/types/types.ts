@@ -2,6 +2,10 @@ type Prettify<T> = {
   [K in keyof T]: T[K];
 } & {};
 
+export type MyContext = {
+  authorization?: string;
+};
+
 export type Car = Prettify<{
   id: string;
   category: string;
@@ -40,7 +44,7 @@ export type User = {
 };
 
 export type CreateUserResponse = Prettify<
-  Response & {
+  Response & { token: string | null } & {
     user: User | null;
   }
 >;

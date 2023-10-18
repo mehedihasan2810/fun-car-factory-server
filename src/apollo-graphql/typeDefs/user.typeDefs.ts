@@ -11,6 +11,7 @@ type CreateUserResponse implements MutationResponse {
   code: Int!
   success: Boolean!
   message: String!
+  token: String!
   user: User
 }
 

@@ -1,8 +1,7 @@
 import { GraphQLError } from "graphql";
 import jwt from "jsonwebtoken";
 
-export const verifyJwt = (req) => {
-  const authorization = req.headers.authorization;
+export const verifyJwt = (authorization: string | undefined) => {
   if (!authorization) {
     throw new GraphQLError("User is not authenticated", {
       extensions: {
@@ -12,7 +11,6 @@ export const verifyJwt = (req) => {
     });
   }
   const token = authorization.split(" ")[1];
-
   try {
     const decoded = jwt.verify(token, process.env.SECRET_KEY as string);
     return decoded;

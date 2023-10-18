@@ -6,7 +6,7 @@ import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import http from "http";
 import { typeDefs, resolvers } from "./apollo-graphql";
-import { verifyJwt } from "./utils/verifyJwt";
+import { MyContext } from "types";
 
 dotenv.config();
 const app = express();
@@ -15,7 +15,7 @@ const port = process.env.PORT || 4000;
 const httpServer = http.createServer(app);
 
 const bootstrapServer = async () => {
-  const server = new ApolloServer({
+  const server = new ApolloServer<MyContext>({
     typeDefs,
     resolvers,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
@@ -23,9 +23,6 @@ const bootstrapServer = async () => {
 
   await server.start();
 
-  // app.use(cors<cors.CorsRequest>());
-  // app.use(express.json());
-  // app.use(express.urlencoded({ extended: true }));
   app.use(
     "/graphql",
     cors<cors.CorsRequest>(),
@@ -33,10 +30,7 @@ const bootstrapServer = async () => {
     express.urlencoded({ extended: true }),
     expressMiddleware(server, {
       context: async ({ req }) => {
-        // console.log(req.headers)
-         verifyJwt(req);
-        // return user;
-        return { token: req.headers.authorization };
+        return { authorization: req.headers.authorization };
       },
     })
   );

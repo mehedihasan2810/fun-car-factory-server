@@ -1,6 +1,7 @@
-import { CreateUserResponse, UserInput } from "types";
+import { CreateUserResponse, User, UserInput } from "types";
 import { prisma } from "../../../prisma/index.prisma";
 import chalk from "chalk";
+import { signJwt } from "../../jwt-helpers/signJwt";
 
 export const getUser = async (email: string) => {
   try {
@@ -24,6 +25,8 @@ export const getUsers = async () => {
   }
 };
 
+// ----------------------------------------------------
+
 export const createUser = async ({
   name,
   email,
@@ -42,8 +45,10 @@ export const createUser = async ({
       code: 200,
       message: "User succesfully created.",
       success: true,
+      token: signJwt(user.email),
       user,
     };
+
     return userRes;
   } catch (error: any) {
     console.log(chalk.bold.red(error.message));
@@ -51,6 +56,7 @@ export const createUser = async ({
       code: 400,
       message: "Email Already Exist!",
       success: false,
+      token: null,
       user: null,
     };
     if (error.message.includes("users_email_key")) {
@@ -62,7 +68,9 @@ export const createUser = async ({
   }
 };
 
-export const deleteUser = async (email: string) => {
+// -----------------------------------------------------
+
+export const deleteUser = async (email: string): Promise<User> => {
   const deletedUser = await prisma.user.delete({
     where: {
       email,

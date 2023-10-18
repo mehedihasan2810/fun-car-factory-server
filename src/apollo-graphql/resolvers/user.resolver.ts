@@ -1,34 +1,55 @@
+import { verifyJwt } from "../../jwt-helpers/verifyJwt";
 import {
   createUser,
   deleteUser,
   getUser,
   getUsers,
 } from "../services/user.service";
-import { User, UserInput, CreateUserResponse } from "types";
+import { User, UserInput, CreateUserResponse, MyContext } from "types";
 
 export const userResolver = {
   Query: {
     async getUser(
       _: unknown,
-      { email }: { email: string }
+      { email }: { email: string },
+      context: MyContext
     ): Promise<User | undefined | null> {
+      verifyJwt(context?.authorization);
       return await getUser(email);
     },
 
-    async getUsers(): Promise<User[] | undefined> {
+    // ---------------------------------------
+
+    async getUsers(
+      _: unknown,
+      __: unknown,
+      context: MyContext
+    ): Promise<User[] | undefined> {
+      verifyJwt(context?.authorization);
       return await getUsers();
     },
   },
+
+  // -----------------------------------------------
+
   Mutation: {
     async createUser(
       _: unknown,
-      { input }: { input: UserInput }
+      { input }: { input: UserInput },
+      // context: MyContext
     ): Promise<CreateUserResponse | undefined> {
       return await createUser(input);
     },
 
-    async deleteUser(_: unknown, { email }: { email: string }): Promise<User> {
-      return deleteUser(email);
+    // -----------------------------------------------------
+
+    async deleteUser(
+      _: unknown,
+      { email }: { email: string },
+      context: MyContext
+    ): Promise<User> {
+      verifyJwt(context?.authorization);
+      return await deleteUser(email);
     },
   },
 };

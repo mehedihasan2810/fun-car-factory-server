@@ -9,6 +9,8 @@ export const getCars = async (): Promise<Car[] | undefined> => {
   }
 };
 
+// -----------------------------------------------------------------
+
 export const getCar = async (id: string): Promise<Car | null | undefined> => {
   try {
     return await prisma.car.findUnique({
@@ -20,6 +22,8 @@ export const getCar = async (id: string): Promise<Car | null | undefined> => {
     console.log(error);
   }
 };
+
+// --------------------------------------------------------------------
 
 export const createCar = async (
   carInput: CarInput
@@ -44,6 +48,8 @@ export const createCar = async (
   }
 };
 
+// --------------------------------------------------------------------------
+
 export const updateCar = async (updateInput: Car): Promise<Car | undefined> => {
   try {
     const { id, ...updateData } = updateInput;
@@ -59,6 +65,8 @@ export const updateCar = async (updateInput: Car): Promise<Car | undefined> => {
   }
 };
 
+// --------------------------------------------------------------------------
+
 export const deleteCar = async (id: string): Promise<Car | undefined> => {
   try {
     return await prisma.car.delete({
@@ -71,7 +79,8 @@ export const deleteCar = async (id: string): Promise<Car | undefined> => {
   }
 };
 
-// cart queries
+// --------------------------------------------------------------------------
+
 export const getCartCar = async (ids: string[]): Promise<Car[] | undefined> => {
   try {
     const cartCars = await prisma.car.findMany({
