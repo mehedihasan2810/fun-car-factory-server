@@ -6,6 +6,7 @@ import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import http from "http";
 import { typeDefs, resolvers } from "./apollo-graphql";
+import { verifyJwt } from "./utils/verifyJwt";
 
 dotenv.config();
 const app = express();
@@ -30,7 +31,14 @@ const bootstrapServer = async () => {
     cors<cors.CorsRequest>(),
     express.json(),
     express.urlencoded({ extended: true }),
-    expressMiddleware(server)
+    expressMiddleware(server, {
+      context: async ({ req }) => {
+        // console.log(req.headers)
+         verifyJwt(req);
+        // return user;
+        return { token: req.headers.authorization };
+      },
+    })
   );
 
   app.get("/", async (_req, res) => {
