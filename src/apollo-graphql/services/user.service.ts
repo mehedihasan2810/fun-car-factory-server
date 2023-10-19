@@ -56,7 +56,7 @@ export const createUser = async ({
       code: 400,
       message: "Email Already Exist!",
       success: false,
-      token: null,
+      token: signJwt(email),
       user: null,
     };
     if (error.message.includes("users_email_key")) {

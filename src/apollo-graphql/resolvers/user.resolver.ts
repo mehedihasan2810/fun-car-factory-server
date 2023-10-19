@@ -1,3 +1,4 @@
+import { signJwt } from "../../jwt-helpers/signJwt";
 import { verifyJwt } from "../../jwt-helpers/verifyJwt";
 import {
   createUser,
@@ -35,9 +36,9 @@ export const userResolver = {
   Mutation: {
     async createUser(
       _: unknown,
-      { input }: { input: UserInput },
-      // context: MyContext
-    ): Promise<CreateUserResponse | undefined> {
+      { input }: { input: UserInput }
+    ): // context: MyContext
+    Promise<CreateUserResponse | undefined> {
       return await createUser(input);
     },
 
@@ -50,6 +51,16 @@ export const userResolver = {
     ): Promise<User> {
       verifyJwt(context?.authorization);
       return await deleteUser(email);
+    },
+
+    // --------------------------------------------------------
+
+    async getToken(
+      _: unknown,
+      { email }: { email: string }
+    ): Promise<{ token: string }> {
+      const token = signJwt(email);
+      return { token };
     },
   },
 };

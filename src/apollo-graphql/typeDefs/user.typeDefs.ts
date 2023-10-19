@@ -15,6 +15,10 @@ type CreateUserResponse implements MutationResponse {
   user: User
 }
 
+type Token {
+    token: String!
+}
+
 type Query {
     getUser(email: String!): User!
     getUsers: [User!]!
@@ -29,5 +33,6 @@ input UserInput {
 type Mutation {
     createUser(input: UserInput!): CreateUserResponse!
     deleteUser(email: String!): User!
+    getToken(email: String!): Token!
 }
 `;
