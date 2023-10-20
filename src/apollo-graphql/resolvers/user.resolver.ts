@@ -29,6 +29,16 @@ export const userResolver = {
       verifyJwt(context?.authorization);
       return await getUsers();
     },
+
+    // ---------------------------------------------
+
+    async getToken(
+      _: unknown,
+      { email }: { email: string }
+    ): Promise<{ token: string }> {
+      const token = signJwt(email);
+      return { token };
+    },
   },
 
   // -----------------------------------------------
@@ -51,16 +61,6 @@ export const userResolver = {
     ): Promise<User> {
       verifyJwt(context?.authorization);
       return await deleteUser(email);
-    },
-
-    // --------------------------------------------------------
-
-    async getToken(
-      _: unknown,
-      { email }: { email: string }
-    ): Promise<{ token: string }> {
-      const token = signJwt(email);
-      return { token };
     },
   },
 };

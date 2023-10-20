@@ -19,20 +19,23 @@ type Token {
     token: String!
 }
 
-type Query {
-    getUser(email: String!): User!
-    getUsers: [User!]!
-}
-
 input UserInput {
     email: String!
     name: String!
     role: String!
 }
 
+type Query {
+    getUser(email: String!): User!
+    getUsers: [User!]!
+    getToken(email: String!): Token!
+}
+
+
+
 type Mutation {
     createUser(input: UserInput!): CreateUserResponse!
     deleteUser(email: String!): User!
-    getToken(email: String!): Token!
+  
 }
 `;
