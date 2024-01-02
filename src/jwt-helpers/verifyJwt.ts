@@ -1,6 +1,13 @@
 import { GraphQLError } from "graphql";
 import jwt from "jsonwebtoken";
 
+/**
+ * Verify JWT token for user authentication.
+ *
+ * @param authorization - Authorization header containing the JWT token.
+ * @returns Decoded user information if authentication is successful.
+ * @throws GraphQLError with code "UNAUTHENTICATED" if authentication fails.
+ */
 export const verifyJwt = (authorization: string | undefined) => {
   if (!authorization) {
     throw new GraphQLError("User is not authenticated", {

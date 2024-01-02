@@ -3,6 +3,11 @@ import { prisma } from "../../../prisma/index.prisma";
 import chalk from "chalk";
 import { signJwt } from "../../jwt-helpers/signJwt";
 
+/**
+ * Gets a user by email from the database.
+ * @param email - The email of the user.
+ * @returns A promise resolving to the user found or null if not found.
+ */
 export const getUser = async (email: string) => {
   try {
     const user = await prisma.user.findUnique({
@@ -17,6 +22,12 @@ export const getUser = async (email: string) => {
   }
 };
 
+// ---------------------------------------------------
+
+/**
+ * Gets all users from the database.
+ * @returns A promise resolving to an array of users.
+ */
 export const getUsers = async () => {
   try {
     return await prisma.user.findMany();
@@ -27,6 +38,13 @@ export const getUsers = async () => {
 
 // ----------------------------------------------------
 
+/**
+ * Creates a new user in the database.
+ * @param name - The name of the user.
+ * @param email - The email of the user.
+ * @param role - The role of the user.
+ * @returns A promise resolving to the response containing the user and a JWT token.
+ */
 export const createUser = async ({
   name,
   email,
@@ -70,6 +88,11 @@ export const createUser = async ({
 
 // -----------------------------------------------------
 
+/**
+ * Deletes a user from the database.
+ * @param email - The email of the user to be deleted.
+ * @returns A promise resolving to the deleted user.
+ */
 export const deleteUser = async (email: string): Promise<User> => {
   const deletedUser = await prisma.user.delete({
     where: {

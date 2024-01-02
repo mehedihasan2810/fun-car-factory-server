@@ -10,6 +10,13 @@ import { User, UserInput, CreateUserResponse, MyContext } from "types";
 
 export const userResolver = {
   Query: {
+    /**
+     * Gets a user by email.
+     * @param _ - Placeholder variable.
+     * @param email - The email of the user to be retrieved.
+     * @param context - The context object containing authorization information.
+     * @returns A promise resolving to the user found or null if not found.
+     */
     async getUser(
       _: unknown,
       { email }: { email: string },
@@ -21,6 +28,13 @@ export const userResolver = {
 
     // ---------------------------------------
 
+    /**
+     * Gets all users.
+     * @param _ - Placeholder variable.
+     * @param __ - Placeholder variable.
+     * @param context - The context object containing authorization information.
+     * @returns A promise resolving to an array of users.
+     */
     async getUsers(
       _: unknown,
       __: unknown,
@@ -32,6 +46,12 @@ export const userResolver = {
 
     // ---------------------------------------------
 
+    /**
+     * Gets a token for the provided email.
+     * @param _ - Placeholder variable.
+     * @param email - The email for which to generate the token.
+     * @returns A promise resolving to an object containing the generated token.
+     */
     async getToken(
       _: unknown,
       { email }: { email: string }
@@ -44,6 +64,12 @@ export const userResolver = {
   // -----------------------------------------------
 
   Mutation: {
+    /**
+     * Creates a new user.
+     * @param _ - Placeholder variable.
+     * @param input - The input data for creating a user.
+     * @returns A promise resolving to the response containing the created user.
+     */
     async createUser(
       _: unknown,
       { input }: { input: UserInput }
@@ -54,6 +80,13 @@ export const userResolver = {
 
     // -----------------------------------------------------
 
+    /**
+     * Deletes a user by email.
+     * @param _ - Placeholder variable.
+     * @param email - The email of the user to be deleted.
+     * @param context - The context object containing authorization information.
+     * @returns A promise resolving to the deleted user.
+     */
     async deleteUser(
       _: unknown,
       { email }: { email: string },

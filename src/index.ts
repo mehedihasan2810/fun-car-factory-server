@@ -12,17 +12,23 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 4000;
 
+// Create an HTTP server and integrate it with Apollo Server
 const httpServer = http.createServer(app);
 
+// Bootstrap the Apollo Server
 const bootstrapServer = async () => {
+
+  // Create an instance of Apollo Server
   const server = new ApolloServer<MyContext>({
     typeDefs,
     resolvers,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
 
+  // Start Apollo Server
   await server.start();
 
+  // Set up middleware for handling GraphQL requests
   app.use(
     "/graphql",
     cors<cors.CorsRequest>(),
@@ -35,6 +41,7 @@ const bootstrapServer = async () => {
     })
   );
 
+  // Simple endpoint to verify server is running
   app.get("/", async (_req, res) => {
     res.send("Fun Car Factory");
   });
@@ -44,9 +51,11 @@ const bootstrapServer = async () => {
   //   console.log(`Graphql server running at http://localhost:${port}/graphql`);
   // });
 
+  // Start the HTTP server
   await new Promise<void>((resolve) => httpServer.listen({ port }, resolve));
   console.log(`🚀 Server ready at http://localhost:${port}`);
   console.log(`🚀 Server ready at http://localhost:${port}/graphql`);
 };
 
+// Execute the bootstrapServer function
 bootstrapServer();

@@ -10,6 +10,12 @@ import {
 import { Car, CarInput, CreateCarResponse, MyContext } from "types";
 export const carResolver = {
   Query: {
+    /**
+     * Gets a car by ID.
+     * @param _ - Placeholder variable.
+     * @param id - The ID of the car to be retrieved.
+     * @returns A promise resolving to the car found or null if not found.
+     */
     async getCar(
       _: unknown,
       { id }: { id: string }
@@ -19,6 +25,14 @@ export const carResolver = {
 
     // -----------------------------------------------
 
+    /**
+     * Gets all cars.
+     * @param _ - Placeholder variable.
+     * @param __ - Placeholder variable.
+     * @param context - The context object containing authorization information.
+     * @param info - Information about the query, including the path.
+     * @returns A promise resolving to an array of cars.
+     */
     async getCars(
       _: unknown,
       __: unknown,
@@ -33,6 +47,12 @@ export const carResolver = {
 
     // --------------------------------------------------
 
+    /**
+     * Gets cars based on their IDs.
+     * @param _ - Placeholder variable.
+     * @param cartIds - The IDs of the cars to be retrieved.
+     * @returns A promise resolving to an array of cars.
+     */
     async getCartCar(
       _: unknown,
       { cartIds }: { cartIds: string[] }
@@ -44,6 +64,13 @@ export const carResolver = {
   // ----------------------------------------------------
 
   Mutation: {
+    /**
+     * Creates a new car.
+     * @param _ - Placeholder variable.
+     * @param carInput - The input data for creating a car.
+     * @param context - The context object containing authorization information.
+     * @returns A promise resolving to the response containing the created car.
+     */
     async createCar(
       _: unknown,
       { carInput }: { carInput: CarInput },
@@ -56,6 +83,13 @@ export const carResolver = {
 
     // ---------------------------------------------------------
 
+    /**
+     * Updates an existing car.
+     * @param _ - Placeholder variable.
+     * @param updateInput - The updated data for the car.
+     * @param context - The context object containing authorization information.
+     * @returns A promise resolving to the updated car.
+     */
     async updateCar(
       _: unknown,
       { updateInput }: { updateInput: Car },
@@ -67,6 +101,13 @@ export const carResolver = {
 
     // -----------------------------------------------------------
 
+    /**
+     * Deletes a car by ID.
+     * @param _ - Placeholder variable.
+     * @param id - The ID of the car to be deleted.
+     * @param context - The context object containing authorization information.
+     * @returns A promise resolving to the deleted car.
+     */
     async deleteCar(
       _: unknown,
       { id }: { id: string },
