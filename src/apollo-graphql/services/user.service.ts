@@ -3,7 +3,7 @@ import { prisma } from "../../../prisma/index.prisma";
 import chalk from "chalk";
 import { signJwt } from "../../jwt-helpers/signJwt";
 
-/**
+/*
  * Gets a user by email from the database.
  * @param email - The email of the user.
  * @returns A promise resolving to the user found or null if not found.
@@ -24,7 +24,7 @@ export const getUser = async (email: string) => {
 
 // ---------------------------------------------------
 
-/**
+/*
  * Gets all users from the database.
  * @returns A promise resolving to an array of users.
  */
@@ -38,7 +38,7 @@ export const getUsers = async () => {
 
 // ----------------------------------------------------
 
-/**
+/*
  * Creates a new user in the database.
  * @param name - The name of the user.
  * @param email - The email of the user.
@@ -88,7 +88,7 @@ export const createUser = async ({
 
 // -----------------------------------------------------
 
-/**
+/*
  * Deletes a user from the database.
  * @param email - The email of the user to be deleted.
  * @returns A promise resolving to the deleted user.

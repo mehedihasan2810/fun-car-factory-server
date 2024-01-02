@@ -1,7 +1,7 @@
 import { GraphQLError } from "graphql";
 import jwt from "jsonwebtoken";
 
-/**
+/*
  * Verify JWT token for user authentication.
  *
  * @param authorization - Authorization header containing the JWT token.

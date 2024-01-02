@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-/**
+/*
  * Sign JWT token with user email for authentication.
  *
  * @param email - User email to include in the JWT payload.

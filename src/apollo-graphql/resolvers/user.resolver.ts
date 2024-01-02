@@ -10,7 +10,7 @@ import { User, UserInput, CreateUserResponse, MyContext } from "types";
 
 export const userResolver = {
   Query: {
-    /**
+    /*
      * Gets a user by email.
      * @param _ - Placeholder variable.
      * @param email - The email of the user to be retrieved.
@@ -28,7 +28,7 @@ export const userResolver = {
 
     // ---------------------------------------
 
-    /**
+    /*
      * Gets all users.
      * @param _ - Placeholder variable.
      * @param __ - Placeholder variable.
@@ -46,7 +46,7 @@ export const userResolver = {
 
     // ---------------------------------------------
 
-    /**
+    /*
      * Gets a token for the provided email.
      * @param _ - Placeholder variable.
      * @param email - The email for which to generate the token.
@@ -64,7 +64,7 @@ export const userResolver = {
   // -----------------------------------------------
 
   Mutation: {
-    /**
+    /*
      * Creates a new user.
      * @param _ - Placeholder variable.
      * @param input - The input data for creating a user.
@@ -80,7 +80,7 @@ export const userResolver = {
 
     // -----------------------------------------------------
 
-    /**
+    /*
      * Deletes a user by email.
      * @param _ - Placeholder variable.
      * @param email - The email of the user to be deleted.

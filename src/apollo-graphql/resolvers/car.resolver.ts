@@ -10,7 +10,7 @@ import {
 import { Car, CarInput, CreateCarResponse, MyContext } from "types";
 export const carResolver = {
   Query: {
-    /**
+    /*
      * Gets a car by ID.
      * @param _ - Placeholder variable.
      * @param id - The ID of the car to be retrieved.
@@ -25,7 +25,7 @@ export const carResolver = {
 
     // -----------------------------------------------
 
-    /**
+    /*
      * Gets all cars.
      * @param _ - Placeholder variable.
      * @param __ - Placeholder variable.
@@ -47,7 +47,7 @@ export const carResolver = {
 
     // --------------------------------------------------
 
-    /**
+    /*
      * Gets cars based on their IDs.
      * @param _ - Placeholder variable.
      * @param cartIds - The IDs of the cars to be retrieved.
@@ -64,7 +64,7 @@ export const carResolver = {
   // ----------------------------------------------------
 
   Mutation: {
-    /**
+    /*
      * Creates a new car.
      * @param _ - Placeholder variable.
      * @param carInput - The input data for creating a car.
@@ -83,7 +83,7 @@ export const carResolver = {
 
     // ---------------------------------------------------------
 
-    /**
+    /*
      * Updates an existing car.
      * @param _ - Placeholder variable.
      * @param updateInput - The updated data for the car.
@@ -101,7 +101,7 @@ export const carResolver = {
 
     // -----------------------------------------------------------
 
-    /**
+    /*
      * Deletes a car by ID.
      * @param _ - Placeholder variable.
      * @param id - The ID of the car to be deleted.
