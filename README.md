@@ -16,4 +16,7 @@
 
 ## Technologies used
 
-`GraphQL` `ExpressJS` `Prisma` `MongoDB` `Typescript` `Vitest` `MSW`
+- Front-End - `ReactJS` `Apollo GraphQL` `CSS` - [Front-End Repository](https://github.com/mehedihasan2810/fun-car-factory-client)
+- Back-End - `GraphQL` `ExpressJS` `Prisma` `MongoDB` `Typescript` `Vitest` `MSW`
+- Auth - `Firebase Auth`
+- Unit Test - `Vitest` `React Testing Library` `msw`
